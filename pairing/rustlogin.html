@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <title>Rust+ pairing</title>
+    </head>
+    <div>You need to enable pop-up windows to pair your device with rust+</div>
+    <script type="text/javascript">
+        console.log('Opening rust+ auth window')
+
+        let rustplusWindow = window.open('https://companion-rust.facepunch.com/login')
+
+        const postMessageHandler = setInterval(() => {
+            if (rustplusWindow.location.host === 'companion-rust.facepunch.com') {
+                rustplusWindow.ReactNativeWebView = {
+                    // handling postMessage event after it being called due to successful login
+                    postMessage: (message) => {
+                        clearInterval(postMessageHandler)
+
+                        message = JSON.parse(message)
+                        console.log(message.Token)
+
+                        window.open(`http://localhost:5000/loginCompleted?authToken=${encodeURIComponent(message.Token)}`,'_self')
+                    }
+                }
+            }
+        }, 500)
+
+    </script>
+</html>
