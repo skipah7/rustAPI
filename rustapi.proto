@@ -1,0 +1,28 @@
+syntax = "proto3";
+package = rustapi;
+
+message AppMessage {
+  optional AppResponse response = 1;
+  optional AppBroadcast broadcast = 2;
+}
+
+message AppRequest {
+  required uint32 seq = 1;
+  required uint64 playerId = 2;
+  required int32 playerToken = 3;
+
+  optional uint32 entityId = 4;
+  optional AppEmpty getInfo = 5;
+  optional AppEmpty getTime = 6;
+  optional AppEmpty getMap = 7;
+  optional AppEmpty getTeamInfo = 8;
+  optional AppEmpty getTeamChat = 9;
+  optional AppSendMessage sendTeamMessage = 10;
+  optional AppEmpty getEntityInfo = 11;
+  optional AppSetEntityValue setEntityValue = 12;
+  optional AppEmpty checkSubscription = 13;
+  optional AppFlag setSubscription = 14;
+  optional AppEmpty getMapMarkers = 15;
+  optional AppCameraFrameRequest getCameraFrame = 16;
+  optional AppPromoteToLeader promoteToLeader = 17;
+}
