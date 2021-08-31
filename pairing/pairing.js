@@ -97,7 +97,7 @@ async function getAuthToken () {
           '--disable-site-isolation-trials'
         ]
       }).catch((error) => {
-        console.log(error)
+        console.error(error)
       })
     })
   })
